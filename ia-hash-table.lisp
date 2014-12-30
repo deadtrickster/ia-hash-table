@@ -5,8 +5,7 @@
 
 (defun string-equalp (f1 f2)
   (declare (type (or symbol string) f1 f2))
-  (string-equal (string f1)
-                (string f2)))
+  (string-equal f1 f2))
 
 #+ (or sbcl cmu)
 (sb-ext:define-hash-table-test string-equalp string-sxhash)
@@ -25,4 +24,12 @@
   (let ((table (apply #'make-ia-hash-table hash-table-initargs)))
     (dolist (cons alist)
       (setf (gethash (car cons) table) (cdr cons)))
+    table))
+
+(defun plist-ia-hash-table (plist &rest hash-table-initargs)
+  "Adopted version of alexandria:plist-hash-table"
+  (let ((table (apply #'make-ia-hash-table hash-table-initargs)))
+    (do ((tail plist (cddr tail)))
+        ((not tail))
+      (setf (gethash (car tail) table) (cadr tail)))
     table))
