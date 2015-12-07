@@ -1,6 +1,6 @@
 (asdf:defsystem :ia-hash-table
   :serial t
-  :version "0.0.1"
+  :version "0.1"
   :licence "MIT"
   :depends-on ()
   :author "Ilya Khaprov <ilya.kharpov@publitechs.com>"
