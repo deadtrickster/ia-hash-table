@@ -12,6 +12,13 @@
 
 (declaim (inline make-ia-hash-table))
 
+(deftype alist ()
+  `(and list (satisfies list-is-alist)))
+
+(defun list-is-alist (list)
+  (when (typep list 'list)
+    (every #'consp list)))
+
 (defun make-ia-hash-table (&rest options)
   #-(or sbcl allegro ccl lispworks) (declare (ignore options))
   #+(or sbcl allegro ccl lispworks)
@@ -19,11 +26,16 @@
   #-(or sbcl allegro ccl lispworks)
   (error "MAKE-IA-HASH-TABLE not supported"))
 
+(defun deep-alist-ia-hash-table (value hash-table-initargs)
+  (if (typep value 'alist)
+      (apply #'alist-ia-hash-table value hash-table-initargs)
+      value))
+
 (defun alist-ia-hash-table (alist &rest hash-table-initargs)
   "Adopted version of alexandria:alist-hash-table"
   (let ((table (apply #'make-ia-hash-table hash-table-initargs)))
     (dolist (cons alist)
-      (setf (gethash (car cons) table) (cdr cons)))
+      (setf (gethash (car cons) table) (deep-alist-ia-hash-table (cdr cons) hash-table-initargs)))
     table))
 
 (defun plist-ia-hash-table (plist &rest hash-table-initargs)
