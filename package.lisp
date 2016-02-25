@@ -4,4 +4,7 @@
            #:alist-ia-hash-table
            #:plist-ia-hash-table
            #:string-equalp
-           #:string-sxhash))
+           #:string-sxhash
+
+           #:enable-ia-syntax
+           #:disable-ia-syntax))

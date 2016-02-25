@@ -83,6 +83,6 @@ here by ENABLE-IA-SYNTAX.")
     (setq *readtable* (copy-readtable nil)))
   (values))
 
-(defmacro disable-binary-string-syntax ()
+(defmacro disable-ia-syntax ()
   `(eval-when (:compile-toplevel :load-toplevel :execute)
      (%disable-ia-syntax)))
