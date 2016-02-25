@@ -12,8 +12,6 @@ T
 ```
 
 ```lisp
-
-```
 (enable-ia-syntax)
 
 (defparameter response (alist-ia-hash-table '(("name" . "John Smith")
