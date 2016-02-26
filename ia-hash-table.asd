@@ -2,7 +2,7 @@
   :serial t
   :version "0.2"
   :licence "MIT"
-  :depends-on ()
+  :depends-on ("alexandria")
   :author "Ilya Khaprov <ilya.kharpov@publitechs.com>"
   :components ((:file "package")
                (:file "ia-hash-table")
