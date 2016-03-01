@@ -1,3 +1,5 @@
+# IA-HASH-TABLE  [![Build Status](https://travis-ci.org/deadtrickster/ia-hash-table.svg?branch=master)](https://travis-ci.org/deadtrickster/ia-hash-table) [![Coverage Status](https://coveralls.io/repos/deadtrickster/ia-hash-table/badge.svg?branch=master&service=github)](https://coveralls.io/github/deadtrickster/ia-hash-table?branch=master)
+
 ## Examples
 -------------
 
