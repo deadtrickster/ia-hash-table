@@ -27,9 +27,12 @@
   (error "MAKE-IA-HASH-TABLE not supported"))
 
 (defun deep-alist-ia-hash-table (value hash-table-initargs)
-  (if (typep value 'alist)
-      (apply #'alist-ia-hash-table value hash-table-initargs)
-      value))
+  (typecase value
+    (alist
+     (apply #'alist-ia-hash-table value hash-table-initargs))
+    ((and sequence (not string))
+     (map (type-of value) (lambda (v) (deep-alist-ia-hash-table v hash-table-initargs)) value))
+    (t value)))
 
 (defun alist-ia-hash-table (alist &rest hash-table-initargs)
   "Adopted version of alexandria:alist-hash-table"
